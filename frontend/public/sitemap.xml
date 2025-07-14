@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage / Customizer -->
+  <url>
+    <loc>https://casacustoms.shop/</loc>
+    <lastmod>2025-07-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <!-- Gallery Page -->
+  <url>
+    <loc>https://casacustoms.shop/gallery</loc>
+    <lastmod>2025-07-14</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+</urlset>

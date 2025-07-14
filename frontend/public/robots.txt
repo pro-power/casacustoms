@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin
+Disallow: /cart
+Disallow: /checkout
+
+Allow: /
+
+Sitemap: https://casacustoms.shop/sitemap.xml
