@@ -57,7 +57,7 @@ router.post('/stripe', async (req, res) => {
 // Handle successful payment
 const handlePaymentSucceeded = async (paymentIntent) => {
   try {
-    console.log(`💳 Payment succeeded: ${paymentIntent.id}`);
+    // console.log(`💳 Payment succeeded: ${paymentIntent.id}`);
     
     // Find order by payment intent ID
     const order = await Order.findOne({
@@ -76,7 +76,7 @@ const handlePaymentSucceeded = async (paymentIntent) => {
     
     await order.save();
     
-    console.log(`✅ Order ${order.orderNumber} payment confirmed and moved to processing`);
+    // console.log(`✅ Order ${order.orderNumber} payment confirmed and moved to processing`);
     
     // Here you could send confirmation email, notify fulfillment, etc.
     // await sendOrderConfirmationEmail(order);
@@ -98,7 +98,7 @@ const handlePaymentFailed = async (paymentIntent) => {
     });
     
     if (!order) {
-      console.error(`Order not found for payment intent: ${paymentIntent.id}`);
+      // console.error(`Order not found for payment intent: ${paymentIntent.id}`);
       return;
     }
     
@@ -122,7 +122,7 @@ const handlePaymentFailed = async (paymentIntent) => {
 // Handle charge dispute
 const handleChargeDispute = async (dispute) => {
   try {
-    console.log(`⚠️  Charge dispute created: ${dispute.id} for charge ${dispute.charge}`);
+    // console.log(`⚠️  Charge dispute created: ${dispute.id} for charge ${dispute.charge}`);
     
     // Get the charge to find the payment intent
     const charge = await stripe.charges.retrieve(dispute.charge);

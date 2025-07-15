@@ -26,7 +26,7 @@ const getStripePromise = () => {
     return null;
   }
   
-  console.log('✅ Initializing Stripe with key:', publishableKey.substring(0, 12) + '...');
+  // console.log('✅ Initializing Stripe with key:', publishableKey.substring(0, 12) + '...');
   return loadStripe(publishableKey);
 };
 

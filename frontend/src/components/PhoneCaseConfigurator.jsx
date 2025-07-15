@@ -5,6 +5,7 @@ import { Star, ShoppingCart, Loader2 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import ReviewsSection from './ReviewsSection';
 import Footer from './Footer';
+import { Link } from 'react-router-dom';
 
 const COLORS = [
   { name: 'Hot Pink', hex: '#E91E63' },
@@ -341,6 +342,7 @@ const PhoneCaseConfigurator = () => {
             />
           </div>
 
+
           {/* Configuration Panel */}
           <div className="space-y-8">
             {/* Product Header */}
@@ -349,6 +351,16 @@ const PhoneCaseConfigurator = () => {
                 Custom Islander Products
               </h1>
               <p className="text-xl text-gray-300">Personalized Items with Custom Text</p>
+
+              {/* ADD THIS STRATEGIC LINK */}
+              <div className="text-center">
+                <Link 
+                  to="/how-it-works" 
+                  className="text-pink-400 hover:text-pink-300 font-medium text-sm underline"
+                >
+                  New to Casa Customs? Learn how our design process works →
+                </Link>
+              </div>
               
               <div className="flex items-center space-x-4">
                 <div className="flex items-center">

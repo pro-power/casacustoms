@@ -1,4 +1,4 @@
-// Enhanced Gallery Component with Working Cart Integration
+// Enhanced Gallery Component with Random 8 Samples
 import React, { useState, useEffect } from 'react';
 import { Heart, ShoppingCart, Star, Filter, Search, Eye } from 'lucide-react';
 import { useApp } from '../context/AppContext'; // Import your cart context
@@ -8,6 +8,7 @@ const Gallery = () => {
   
   const [featuredCases, setFeaturedCases] = useState([]);
   const [filteredCases, setFilteredCases] = useState([]);
+  const [randomizedCases, setRandomizedCases] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDevice, setSelectedDevice] = useState('all');
   const [selectedColor, setSelectedColor] = useState('all');
@@ -53,12 +54,12 @@ const Gallery = () => {
     {
       id: 4,
       device: 'Samsung Galaxy S23',
-      text: 'Casa Girl',
-      color: 'Hot Pink',
+      text: 'Casa Girly',
+      color: 'Orange',
       price: 5.95,
       likes: 203,
       rating: 4.9,
-      image: '/images/mockups/casagirl.png',
+      image: '/images/mockups/casagirly.png',
       description: 'Bold orange statement for the bold islander feel'
     },
     {
@@ -96,6 +97,17 @@ const Gallery = () => {
     },
     {
       id: 8,
+      device: 'Water Bottle',
+      text: 'Danielle',
+      color: 'Hot Pink',
+      price: 5.95,
+      likes: 217,
+      rating: 4.8,
+      image: '/images/mockups/waterbottle-c.png',
+      description: 'Elegant Hot Pink for attention at the gym.'
+    },
+    {
+      id: 9,
       device: 'Samsung Galaxy S25 ultra',
       text: 'Closed Off',
       color: 'Purple',
@@ -179,6 +191,12 @@ const Gallery = () => {
     setFilteredCases(filtered);
   }, [featuredCases, searchTerm, selectedDevice, selectedColor, sortBy]);
 
+  // Random selection of 8 items - updates when filteredCases changes
+  useEffect(() => {
+    const shuffled = [...filteredCases].sort(() => Math.random() - 0.5);
+    setRandomizedCases(shuffled.slice(0, 8));
+  }, [filteredCases]);
+
   // FIXED: Now properly integrates with your cart system
   const handleQuickAdd = (caseData) => {
     try {
@@ -256,7 +274,7 @@ const Gallery = () => {
         {/* Gallery Grid */}
         {viewMode === 'grid' ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredCases.map((caseItem) => (
+            {randomizedCases.map((caseItem) => (
               <div key={caseItem.id} className="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-pink-500/50 transition-all group hover:scale-105">
                 <div className="relative">
                   {/* Product Image */}
@@ -321,7 +339,7 @@ const Gallery = () => {
         ) : (
           /* List View */
           <div className="space-y-4">
-            {filteredCases.map((caseItem) => (
+            {randomizedCases.map((caseItem) => (
               <div key={caseItem.id} className="bg-gray-800 rounded-2xl border border-gray-700 hover:border-pink-500/50 transition-all">
                 <div className="flex items-center p-6">
                   <div className="w-20 h-28 rounded-lg overflow-hidden flex-shrink-0">
@@ -373,6 +391,19 @@ const Gallery = () => {
           </div>
         )}
 
+        {/* Show total available vs displayed */}
+        <div className="text-center mt-12">
+          <button 
+            onClick={() => {
+              // Shuffle and get new random 8
+              const shuffled = [...filteredCases].sort(() => Math.random() - 0.5);
+              setRandomizedCases(shuffled.slice(0, 8));
+            }}
+            className="bg-gray-800 border border-gray-600 text-white px-8 py-3 rounded-lg hover:border-pink-500/50 transition-all font-medium"
+          >
+            More Designs
+          </button>
+        </div>
       </div>
     </div>
   );

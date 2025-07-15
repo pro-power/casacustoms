@@ -1,4 +1,4 @@
-// src/components/Header.jsx - Remove admin tab from navigation
+// src/components/Header.jsx - Add FAQ and How It Works navigation
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingCart, Heart } from 'lucide-react';
@@ -21,24 +21,24 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-4">
-  <button
-    onClick={() => navigate('/')}
-    className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
-  >
-    <img
-      src="/Logo.png"
-      alt="Casa Customs Logo"
-      className="w-20 h-20 object-contain"
-      onError={(e) => {
-        // Fallback to heart icon if logo fails to load
-        e.target.style.display = 'none';
-        e.target.nextElementSibling.style.display = 'inline-block';
-      }}
-    />
-  </button>
-</div>
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+            >
+              <img
+                src="/Logo.png"
+                alt="Casa Customs Logo"
+                className="w-20 h-20 object-contain"
+                onError={(e) => {
+                  // Fallback to heart icon if logo fails to load
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'inline-block';
+                }}
+              />
+            </button>
+          </div>
 
-          {/* Navigation - REMOVED ADMIN TAB */}
+          {/* Navigation - Added FAQ and How It Works */}
           <nav className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => navigate('/')}
@@ -51,6 +51,26 @@ const Header = () => {
               Customize
             </button>
             <button
+              onClick={() => navigate('/how-it-works')}
+              className={`text-sm font-medium transition-colors ${
+                isActive('/how-it-works')
+                  ? 'text-pink-400'
+                  : 'text-gray-300 hover:text-pink-400'
+              }`}
+            >
+              How It Works
+            </button>
+            <button
+              onClick={() => navigate('/faq')}
+              className={`text-sm font-medium transition-colors ${
+                isActive('/faq')
+                  ? 'text-pink-400'
+                  : 'text-gray-300 hover:text-pink-400'
+              }`}
+            >
+              FAQ
+            </button>
+            <button
               onClick={() => navigate('/gallery')}
               className={`text-sm font-medium transition-colors ${
                 isActive('/gallery')
@@ -60,8 +80,6 @@ const Header = () => {
             >
               Gallery
             </button>
-            
-            {/* REMOVED: Admin Link - No longer visible in public header */}
           </nav>
 
           {/* Cart */}
@@ -80,12 +98,12 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation - ALSO REMOVED ADMIN */}
+        {/* Mobile Navigation - Added FAQ and How It Works */}
         <div className="md:hidden pb-4">
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 overflow-x-auto">
             <button
               onClick={() => navigate('/')}
-              className={`text-sm font-medium transition-colors ${
+              className={`text-sm font-medium transition-colors whitespace-nowrap ${
                 isActive('/') && location.pathname === '/'
                   ? 'text-pink-400'
                   : 'text-gray-300 hover:text-pink-400'
@@ -94,8 +112,28 @@ const Header = () => {
               Customize
             </button>
             <button
+              onClick={() => navigate('/how-it-works')}
+              className={`text-sm font-medium transition-colors whitespace-nowrap ${
+                isActive('/how-it-works')
+                  ? 'text-pink-400'
+                  : 'text-gray-300 hover:text-pink-400'
+              }`}
+            >
+              How It Works
+            </button>
+            <button
+              onClick={() => navigate('/faq')}
+              className={`text-sm font-medium transition-colors whitespace-nowrap ${
+                isActive('/faq')
+                  ? 'text-pink-400'
+                  : 'text-gray-300 hover:text-pink-400'
+              }`}
+            >
+              FAQ
+            </button>
+            <button
               onClick={() => navigate('/gallery')}
-              className={`text-sm font-medium transition-colors ${
+              className={`text-sm font-medium transition-colors whitespace-nowrap ${
                 isActive('/gallery')
                   ? 'text-pink-400'
                   : 'text-gray-300 hover:text-pink-400'

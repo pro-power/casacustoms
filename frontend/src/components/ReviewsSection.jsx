@@ -1,6 +1,7 @@
 // src/components/ReviewsSection.jsx
 import React, { useState, useEffect } from 'react';
 import { Star, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const ReviewsSection = () => {
   // Mock review data
@@ -248,17 +249,25 @@ const ReviewsSection = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-12">
-          <p className="text-gray-300 mb-4">
-            Join thousands of happy customers
-          </p>
+        <p className="text-gray-300 mb-4">
+          Join thousands of happy customers
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-8 py-3 rounded-lg font-semibold hover:from-pink-600 hover:to-orange-600 transition-all shadow-lg shadow-pink-500/25"
           >
             Create Your Case Now
           </button>
+          <Link 
+            to="/faq"
+            className="bg-gray-700 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold transition-all border border-gray-600 hover:border-gray-500"
+          >
+            Have Questions? See FAQ
+          </Link>
         </div>
       </div>
+            </div>
     </section>
   );
 };

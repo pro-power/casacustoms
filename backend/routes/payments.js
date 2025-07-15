@@ -67,11 +67,11 @@ const calculateTax = (subtotal, shipping, state) => {
 // POST /api/payments/create-intent - Create Stripe payment intent
 router.post('/create-intent', validatePaymentIntent, async (req, res) => {
   try {
-    console.log('📝 Payment intent request received:', {
-      customerEmail: req.body.customerInfo?.email,
-      itemCount: req.body.items?.length,
-      total: req.body.total
-    });
+    // console.log('📝 Payment intent request received:', {
+    //   customerEmail: req.body.customerInfo?.email,
+    //   itemCount: req.body.items?.length,
+    //   total: req.body.total
+    // });
 
     // Check validation errors
     const errors = validationResult(req);
@@ -91,13 +91,13 @@ router.post('/create-intent', validatePaymentIntent, async (req, res) => {
     const calculatedTax = tax !== undefined ? parseFloat(tax) : calculateTax(calculatedSubtotal, calculatedShipping, shippingAddress?.state);
     const calculatedTotal = calculatedSubtotal + calculatedShipping + calculatedTax;
     
-    console.log('💰 Calculated amounts:', {
-      subtotal: calculatedSubtotal,
-      shipping: calculatedShipping,
-      tax: calculatedTax,
-      total: calculatedTotal,
-      providedTotal: parseFloat(total)
-    });
+    // console.log('💰 Calculated amounts:', {
+    //   subtotal: calculatedSubtotal,
+    //   shipping: calculatedShipping,
+    //   tax: calculatedTax,
+    //   total: calculatedTotal,
+    //   providedTotal: parseFloat(total)
+    // });
     
     // Allow small rounding differences (within 5 cents for tax calculations)
     if (Math.abs(calculatedTotal - parseFloat(total)) > 0.05) {
@@ -115,7 +115,7 @@ router.post('/create-intent', validatePaymentIntent, async (req, res) => {
     // Convert to cents for Stripe (USD)
     const amount = Math.round(finalTotal * 100);
     
-    console.log(`💳 Creating payment intent for ${finalTotal.toFixed(2)} (${amount} cents)`);
+    // console.log(`💳 Creating payment intent for ${finalTotal.toFixed(2)} (${amount} cents)`);
     
     // Create payment intent
     const paymentIntent = await stripe.paymentIntents.create({
@@ -149,7 +149,7 @@ router.post('/create-intent', validatePaymentIntent, async (req, res) => {
       },
     });
     
-    console.log(`✅ Payment intent created: ${paymentIntent.id} for ${finalTotal.toFixed(2)}`);
+    // console.log(`✅ Payment intent created: ${paymentIntent.id} for ${finalTotal.toFixed(2)}`);
     
     res.json({
       id: paymentIntent.id,
@@ -205,7 +205,7 @@ router.post('/confirm', validateConfirmPayment, async (req, res) => {
     
     const { paymentIntentId, paymentMethodId } = req.body;
     
-    console.log(`🔄 Confirming payment: ${paymentIntentId}`);
+    // console.log(`🔄 Confirming payment: ${paymentIntentId}`);
     
     // Confirm the payment intent
     const paymentIntent = await stripe.paymentIntents.confirm(paymentIntentId, {
@@ -213,7 +213,7 @@ router.post('/confirm', validateConfirmPayment, async (req, res) => {
       return_url: `${process.env.FRONTEND_URL}/order-confirmation`,
     });
     
-    console.log(`✅ Payment confirmed: ${paymentIntent.id} - Status: ${paymentIntent.status}`);
+    // console.log(`✅ Payment confirmed: ${paymentIntent.id} - Status: ${paymentIntent.status}`);
     
     // Safely handle charges data
     const charges = paymentIntent.charges?.data || [];
@@ -332,7 +332,7 @@ router.post('/refund', async (req, res) => {
       }
     });
     
-    console.log(`💰 Refund processed: ${refund.id} for charge ${charge.id}`);
+    // console.log(`💰 Refund processed: ${refund.id} for charge ${charge.id}`);
     
     res.json({
       id: refund.id,

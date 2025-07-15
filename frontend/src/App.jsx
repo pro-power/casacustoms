@@ -18,10 +18,13 @@ import AdminDashboard from './components/AdminDashboard';
 import LoadingScreen from './components/LoadingScreen';
 import ErrorBoundary from './components/ErrorBoundary';
 import AdminLogin from './components/AdminLogin';
+import HowItWorks from './pages/HowItWorks';
+import Footer from './components/Footer';
+import FAQ from './components/FAQ'
 
 // API Health Check
 import { apiUtils } from './services/api';
-import Footer from './components/Footer';
+;
 
 // ============================================================================
 // ERROR BOUNDARY COMPONENT
@@ -233,8 +236,10 @@ const AppRoutes = () => {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<PhoneCaseConfigurator />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/customize" element={<PhoneCaseConfigurator />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/checkout" element={<Checkout />} />
           
           {/* Admin Routes */}
