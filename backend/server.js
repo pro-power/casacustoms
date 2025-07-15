@@ -92,6 +92,8 @@ const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
       process.env.FRONTEND_URL,
+	'https://casacustoms.shop',
+	'https://www.casacustoms.shop',
       'http://localhost:5173', // Vite dev server
       'http://localhost:3000', // React dev server
       'https://localhost:5173',
