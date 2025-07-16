@@ -51,12 +51,12 @@ router.post('/', validateCreateOrder, async (req, res) => {
     
     const orderData = req.body;
     
-    console.log(`📦 Creating order for ${orderData.customerInfo.email}`);
-    console.log('📍 Shipping to:', {
-      city: orderData.shippingAddress.city,
-      state: orderData.shippingAddress.state,
-      zipCode: orderData.shippingAddress.zipCode
-    });
+    // console.log(`📦 Creating order for ${orderData.customerInfo.email}`);
+    // console.log('📍 Shipping to:', {
+    //   city: orderData.shippingAddress.city,
+    //   state: orderData.shippingAddress.state,
+    //   zipCode: orderData.shippingAddress.zipCode
+    // });
 
     // Create order with US address structure
     const order = new Order({
@@ -105,12 +105,12 @@ router.post('/', validateCreateOrder, async (req, res) => {
       status: 'processing' // Start as processing since payment is confirmed
     });
     
-    console.log('🔍 Order before save:', {
-      hasOrderNumber: !!order.orderNumber,
-      customerEmail: order.customerInfo.email,
-      total: order.total,
-      itemCount: order.items.length
-    });
+    // console.log('🔍 Order before save:', {
+    //   hasOrderNumber: !!order.orderNumber,
+    //   customerEmail: order.customerInfo.email,
+    //   total: order.total,
+    //   itemCount: order.items.length
+    // });
     
     console.log('💾 Saving order to database...');
 
@@ -129,7 +129,7 @@ router.post('/', validateCreateOrder, async (req, res) => {
         if (!existing) {
           isUnique = true;
         } else {
-          console.log(`🔄 Order number ${order.orderNumber} exists, retrying...`);
+          console.log(`🔄 Order number exists, retrying...`);
         }
         attempts++;
       }
@@ -138,11 +138,11 @@ router.post('/', validateCreateOrder, async (req, res) => {
         throw new Error('Could not generate unique order number');
       }
       
-      console.log('✅ Generated unique order number:', order.orderNumber);
+      console.log('✅ Generated unique order number');
     }
     await order.save();
     
-    console.log(`✅ Order created successfully: ${order.orderNumber}`);
+    console.log(`✅ Order created successfully`);
     
     // Return order data that matches frontend expectations
     const responseOrder = {

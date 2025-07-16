@@ -62,7 +62,7 @@ const PRODUCT_TYPES = [
   },
   {
     id: 'champagne-glass',
-    name: 'Champagne Glass',
+    name: 'Champagne Flute',
     icon: '🥂',
     variants: [
       'Standard Glass'

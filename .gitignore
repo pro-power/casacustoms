@@ -5,3 +5,6 @@ node_modules
 backend/.env
 frontend/.env
 frontend/vite.config.js
+backend/key.txt
+./ecosystem.config.js
+frontend/public/images/mockups/*

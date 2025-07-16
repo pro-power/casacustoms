@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+node_modules
+.env
+*.env
+.env
+backend/.env
+frontend/.env
+frontend/vite.config.js
+backend/key.txt
+./ecosystem.config.js
